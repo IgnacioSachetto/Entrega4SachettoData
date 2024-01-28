@@ -199,6 +199,7 @@ def cargar_datos_redshift(exec_date, **kwargs):
 
                 logging.info("Datos cargados correctamente en Redshift para el registro actual.")
 
+                #Si los datos se han cargado ejecuto la función de enviar mail a la cual le proporciono los parametros en realación a una correcta ejecución y la cantidad de registros que se insertaron nuevos.
                 enviar_email(EMAIL_SUBJECT_SUCESS, EMAIL_BODY_SUCESS, EMAIL_DESTINY,num_intento,registros_insertados)
                 num_intento = 0
 
@@ -208,6 +209,8 @@ def cargar_datos_redshift(exec_date, **kwargs):
 
     except Exception as e:
         logging.error(f"Error al intentar cargar datos en Redshift: {str(e)}")
+        #Si hubo un error lo que hago es ir sumando las ejecuciones erroneas y definir un threadhole desde mi variable de entorno con el objetivo de que si se llega a ese threadhole no se continué enviando mails de error en cada nueva ejecución hasta que se solucione el problema
+        num_intento+=1
         if num_intento < TIMES_EMAIL_SENT:
             enviar_email(EMAIL_SUBJECT_FAIL, EMAIL_BODY_FAIL, EMAIL_DESTINY,num_intento,registros_insertados)
 
@@ -220,25 +223,25 @@ def cargar_datos_redshift(exec_date, **kwargs):
 
 
 def enviar_email(subject, body_text, to_email, num_intento,registros_insertados):
+    #Asigno mis variables de correo y password para ser utiilizadas por el servicio de SMTP
     user = EMAIL_DATA
     pwd_email = EMAIL_PASS
 
     try:
         with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            #Inicializo el servicio de SMTP
             server.starttls()
             server.login(user, pwd_email)
 
-            # Agrega el número de intento al cuerpo del correo electrónico
+            # Defino el mensaje en el cual se vera el mensaje (puede ser de exito o de fallo), la fecha de ejecución, los registros nuevos y los intentos-
             message = f'Subject: {subject}\n\n{body_text}\nFecha y hora de ejecución: {datetime.now()}.\nCantidad de Registros Nuevos Insertados: {registros_insertados}.\nEste fue el intento de carga N°: {num_intento}.'.encode('utf-8')
             server.sendmail(user, to_email, message)
 
-
-        # Agrega la hora de ejecución al mensaje de registro de éxito
+        #Muestro un mensaje por consola para asegurarme de la correcta ejecución.
         success_message = f'Email enviado con éxito a las {datetime.now()}'
         logging.info(success_message)
 
     except Exception as exception:
-        # Agrega la hora de ejecución al mensaje de registro de error
         error_message = f'Falló el envío del email a las {datetime.now()}: {str(exception)}'
         logging.error(error_message)
 
