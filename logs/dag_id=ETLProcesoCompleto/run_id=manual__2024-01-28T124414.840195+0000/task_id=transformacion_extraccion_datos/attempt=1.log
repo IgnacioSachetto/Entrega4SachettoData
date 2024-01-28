@@ -1,0 +1,28 @@
+[2024-01-28 12:44:48,023] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: ETLProcesoCompleto.transformacion_extraccion_datos manual__2024-01-28T12:44:14.840195+00:00 [queued]>
+[2024-01-28 12:44:48,044] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: ETLProcesoCompleto.transformacion_extraccion_datos manual__2024-01-28T12:44:14.840195+00:00 [queued]>
+[2024-01-28 12:44:48,045] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-28 12:44:48,045] {taskinstance.py:1377} INFO - Starting attempt 1 of 6
+[2024-01-28 12:44:48,046] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-28 12:44:48,095] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): transformacion_extraccion_datos> on 2024-01-28 12:44:14.840195+00:00
+[2024-01-28 12:44:48,101] {standard_task_runner.py:52} INFO - Started process 3380 to run task
+[2024-01-28 12:44:48,105] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'ETLProcesoCompleto', 'transformacion_extraccion_datos', 'manual__2024-01-28T12:44:14.840195+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/ETLSachetto.py', '--cfg-path', '/tmp/tmpo84tjf33', '--error-file', '/tmp/tmpu76md36j']
+[2024-01-28 12:44:48,107] {standard_task_runner.py:80} INFO - Job 66: Subtask transformacion_extraccion_datos
+[2024-01-28 12:44:48,358] {task_command.py:371} INFO - Running <TaskInstance: ETLProcesoCompleto.transformacion_extraccion_datos manual__2024-01-28T12:44:14.840195+00:00 [running]> on host 1fae8229e5ee
+[2024-01-28 12:44:48,546] {logging_mixin.py:115} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:202 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2024-01-28 12:44:48,670] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Ignacio Sachetto
+AIRFLOW_CTX_DAG_ID=ETLProcesoCompleto
+AIRFLOW_CTX_TASK_ID=transformacion_extraccion_datos
+AIRFLOW_CTX_EXECUTION_DATE=2024-01-28T12:44:14.840195+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2024-01-28T12:44:14.840195+00:00
+[2024-01-28 12:44:48,678] {ETLSachetto.py:84} INFO - date_from: 2024-01-26 12:44:48.678043
+[2024-01-28 12:44:48,678] {ETLSachetto.py:85} INFO - date_to: 2024-01-27
+[2024-01-28 12:44:50,913] {ETLSachetto.py:116} INFO - No hay datos de partidos disponibles.
+[2024-01-28 12:44:53,085] {ETLSachetto.py:131} INFO - Data obtenida: 1 partidos recuperados.
+[2024-01-28 12:44:53,090] {python.py:173} INFO - Done. Returned value was: [{'area': {'id': 2088, 'name': 'Germany', 'code': 'DEU', 'flag': 'https://crests.football-data.org/759.svg'}, 'competition': {'id': 2002, 'name': 'Bundesliga', 'code': 'BL1', 'type': 'LEAGUE', 'emblem': 'https://crests.football-data.org/BL1.png'}, 'season': {'id': 1592, 'startDate': '2023-08-18', 'endDate': '2024-05-18', 'currentMatchday': 19, 'winner': None}, 'id': 441954, 'utcDate': '2024-01-26T19:30:00Z', 'status': 'FINISHED', 'matchday': 19, 'stage': 'REGULAR_SEASON', 'group': None, 'lastUpdated': '2024-01-27T00:21:06Z', 'homeTeam': {'id': 19, 'name': 'Eintracht Frankfurt', 'shortName': 'Frankfurt', 'tla': 'SGE', 'crest': 'https://crests.football-data.org/19.svg'}, 'awayTeam': {'id': 15, 'name': '1. FSV Mainz 05', 'shortName': 'Mainz', 'tla': 'M05', 'crest': 'https://crests.football-data.org/15.png'}, 'score': {'winner': 'HOME_TEAM', 'duration': 'REGULAR', 'fullTime': {'home': 1, 'away': 0}, 'halfTime': {'home': 0, 'away': 0}}, 'odds': {'msg': 'Activate Odds-Package in User-Panel to retrieve odds.'}, 'referees': [{'id': 43878, 'name': 'Felix Zwayer', 'type': 'REFEREE', 'nationality': 'Germany'}], 'fecha_partido': '2024-01-26T19:30:00Z', 'competicion': 'Bundesliga', 'estado': 'FINISHED', 'etapa': 'REGULAR_SEASON', 'jornada': 19, 'equipo_local': 'Eintracht Frankfurt', 'equipo_visitante': '1. FSV Mainz 05', 'arbitro': 'Felix Zwayer', 'resultado': '1 - 0'}]
+[2024-01-28 12:44:53,205] {taskinstance.py:1420} INFO - Marking task as SUCCESS. dag_id=ETLProcesoCompleto, task_id=transformacion_extraccion_datos, execution_date=20240128T124414, start_date=20240128T124448, end_date=20240128T124453
+[2024-01-28 12:44:53,316] {local_task_job.py:156} INFO - Task exited with return code 0
+[2024-01-28 12:44:53,497] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check
